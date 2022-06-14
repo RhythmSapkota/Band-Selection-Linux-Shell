@@ -1,0 +1,71 @@
+body {
+    background-color: rgb(226, 119, 119);
+    font-family: Arial, sans-serif;
+    background-image: url(bg-image.jpg);
+    background-size: cover;
+  }
+#main {
+    text-align: center;
+    margin: 50px auto;
+    background-image: url(ag-image.jpg);
+    background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px black;
+  }
+  
+  h1#Song1 {
+    font-family: 'Rockwell', serif;
+    font-size: 36px;
+    color: whitesmoke;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    font-size: 24px;    
+    background-color: #a388e6;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  #seek-bar {
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  input[type="checkbox"] {
+    margin: 20px;
+  }
+  
+  label[for="auto-play-checkbox"] {
+    font-size: 18px;
+    color: aliceblue;
+  }
+  .button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(36, 32, 38);
+    color: white;
+    transition: all 0.2s;
+  }
+  
+  .button:active {
+    transform: scale(0.95);
+  }
+
+  #current-time {
+    font-size: 18px;
+    color: rgb(251, 251, 251);
+}  
+  #vol {
+    font-size: 18px;
+    color: rgb(251, 251, 251);
+    font-weight: bold;
+  }

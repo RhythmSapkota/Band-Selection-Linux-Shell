@@ -1,0 +1,24 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <form id="Form">
+      <input type='text' name="email" placeholder="enter your email" />
+      <input type="password" name="password" placeholder="enter your password"/>
+      <input type="submit" name="submit" value="submit" />
+    </form>
+    <script>
+      let FORM = document.getElementById("Form");
+      
+      FORM.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        let formData = new FormData(FORM);
+        for (let [name, value] of formData.entries()) {
+          console.log(`${name}: ${value}`);
+        }
+      });
+    </script>
+  </body>
+</html>
+

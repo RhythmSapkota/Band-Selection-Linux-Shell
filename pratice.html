@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Audio Implement</title>
+</head>
+<body>
+    <div id="main">
+        <h1 id="Song1">River Flows in You</h1><br>
+        <div>
+            <div>
+                <div id="current-time">0:00</div>
+            <input type="range" id="seek-bar" value="0"></div>
+           
+            <button id="btnA" class="button">Play</button>
+            <button id="btnB" class="button">Stop</buttton>
+            <button id ="btnC" class="button">Pause</button>
+            <!-- <button id ="btnD" class="button">Volume up</button> -->
+                    <div id="SA">
+                    <div id="vol">
+                        <input type="range" id="volumeHI" value = "70">
+                        <label id="volumeHI">Change Volume</label>
+                        <!-- <input type="range" id="volumeLO" value = "70"> -->
+                    </div>  
+            <!-- <button id = "btnE" class="button"> Volume Down</button> -->
+            <button id = "btnF" class="button">Next Song</button>
+            <button id = "btnG" class="button">Previous Song</button>
+        </div>
+            <div>
+                <input type="checkbox" id="auto-play-checkbox">
+                <label for="auto-play-checkbox">Auto Play Next Song</label>
+              
+                
+              </div>
+        </div>
+    </div>
+    <script src="audio.js"></script>
+    
+</body>
+</html>
