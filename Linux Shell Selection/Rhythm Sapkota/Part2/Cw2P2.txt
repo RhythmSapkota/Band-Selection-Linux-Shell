@@ -1,0 +1,239 @@
+#!/bin/bash
+
+# Creating the secret key 
+secretKey="kurt1234"
+passKey="passkey"
+passTry=0
+
+
+until [ $secretKey = $passKey ]
+do	
+	if [ $passTry -ge 3 ]
+	 then
+		exit 1
+	fi
+	echo -e "Enter your Password: \c"
+	read -s passKey
+	echo
+	(( passTry++ )) 
+		
+	if [ -z $passKey ]
+	 then
+	 	passKey="passKey"
+		echo "!!!Incorrect password. Please Retry!!!"
+		echo
+	else
+		if [ $secretKey != $passKey ]
+		 then
+			echo "!!!Incorrect Password!!!"
+			echo 
+		else
+			echo "Password matched!"
+			echo
+		fi
+	fi
+done
+
+# making the function for displaying the list of five band names
+listBand () {
+	echo
+	echo
+	echo "The names and codes of  five bands are listed below:"
+	echo "		 _____________________________"
+	echo "		|    Band Name   |     Code     |"
+	echo "		|----------------|--------------|"
+	echo "		|     Beatles     |     BEA       |"
+	echo "		|     AC/DC      |     AD        |"
+	echo "		|     Queen      |     QUE      |"
+	echo "		|     Blondie    |     BLO       |"
+	echo "		|     Nirvana    |     NIR       |"
+	echo "		|________________|______________|"
+	echo
+}
+
+# function for validating band name
+validateBand () {
+	while [ true ]
+	do
+		echo -e "Please guess required best band >> \c"
+		read bandName
+		if [ -z $bandName ]
+		 then 
+			echo "!!!Please enter the name of your best band!!!"
+		else
+			if [[ $bandName = "BEA" || $bandName = "AD" || $bandName = "QUE" || $bandName = "BLO" || $bandName = "NIR" ]]
+			 then
+			 	if [ $bandName = "NIR" ]
+			 	 then
+			 	 	echo
+			 	 	echo "Correct Guess!!!"
+			 	 	echo -e "Nirvana was a rock band from the United States that formed in 1987 in Aberdeen, Washington. Founded by Kurt Cobain, lead vocalist and guitarist, and Krist Novoselic, bassist, the band went through a number of drummers, most notably Chad Channing, until bringing in Dave Grohl in 1990. Nirvana's popularity popularized alternative rock, and they were sometimes referred to as Generation X's flagship band. Their music has a devoted fanbase and continues to have an impact on current rock culture."
+			 		break
+			 	else
+			 		echo
+			 		echo "Wrong Guess!!! Try again!!!"
+			 	fi
+			else
+				echo
+				echo "!!!Invalid band code. Please choose the valid band code!!!"
+				continue
+			fi
+		fi
+	done
+}
+
+#making the function to list members
+listMember () {
+	echo
+	echo
+	echo "The names and codes of five band members are listed below:"
+	echo "		 _____________________________________"
+	echo "		|     Player              |     Code    |"
+	echo "		|-------------------------|-------------|"
+	echo "		|     John Lennon         |     JL      |"
+	echo "		|     Angus Young         |     AY      |"
+	echo "		|     Freddie Mercury     |     FM      |"
+	echo "		|     Debbie Harry        |     DH      |"
+	echo "		|     Kurt Cobain         |     KC      |"
+	echo "		|_________________________|_____________|"
+	echo
+	echo "Please select any three band members code each separated by a space." 
+}
+
+
+#making the function to read the three band members input from user
+chooseMember () {
+	choose=false
+	while [ $choose = "false" ]
+	do
+		echo -e "Choose  any three members code from band members code. >> \c"
+		read -a members
+		
+		if [ ${#members[@]} -eq 3 ]
+		 then
+			for member in "${members[@]}";
+			do
+				if [[ $member = "JL" || $member = "AY" || $member = "FM" || $member = "DH" || $member = "KC" ]]
+				 then
+				 	valid=true
+				 	continue
+				else
+					valid=false
+					break
+				fi
+			done
+			
+			if [ $valid = "false" ]
+			 then
+				echo "Invalid Code, Please choose the valid band members code."
+			else
+				choose=true
+			fi
+		else
+			echo
+			echo "Please enter only 3 band members."
+		fi
+	done
+}
+
+#making the method for creating the menu
+memberMenu () {
+	chooseMember
+	echo
+	PS3="Please select a number of specific band member from the menu above to see the details. >> "
+	select file in "${members[@]}"
+	do
+		if [ -z $file ]
+		 then
+		 	echo
+		 	echo "Please select a band member number.!!!"
+		else
+			echo
+			case $file in
+				JL) if [ -f JL ]
+				     then
+				     	cat JL
+				     	break
+				    else
+				    	echo "This is not a file"
+				    fi;;
+				AY) if [ -f AY ]
+				     then
+				     	cat AY
+				     	break
+				    else
+				    	echo "This is not a file"
+				    fi;;
+				FM) if [ -f FM ]
+				     then
+				     	cat FM
+				     	break
+				    else
+				    	echo "This is not a file"
+				    fi;;
+				DH) if [ -f DH ]
+				     then
+				     	cat DH
+				     	break
+				    else
+				    	echo "This is not a file"
+				    fi;;
+				KC) if [ -f KC ]
+				     then
+				     	cat KC
+				     	break
+				    else
+				    	echo "This is not a file"
+				    fi;;
+				*) echo "Selected file not understandable";;	
+			esac
+		fi
+	done
+}
+
+if [ $# -eq 2 ]
+ then
+ 	if [[ $1 =~ [Aa-Zz]+$ && $2 =~ [0-9]+$ ]]
+ 	 then
+		echo " _______________________________________________ "
+		echo "|                                                 |"
+		echo "	London Met Id: $2"
+		echo "	Name: $1"
+		echo "	Date and Time: " $(date +%F) $(date +%T)
+		echo "|_________________________________________________|"
+		
+		continue=true
+		
+		while [ $continue = "true" ]
+		do
+			listBand
+			validateBand
+			listMember
+			memberMenu
+			echo
+			
+			will=1
+			until [[ $will = 'y' || $will = 'Y' || $will = 'n' || $will = 'N' ]]
+			do
+				echo -e "Please Enter Y to continue the program and N to exit >> \c"
+				read will
+			done
+			
+			case $will in
+				y|Y) continue;;
+				n|N) echo "!!! Thank u for coming have a good day !!!"
+				     break;;
+				*) echo "invalid option. please retry!!!"
+			esac	
+		done
+	else
+		echo "Please enter in correct order. First Name and then enter ID"
+	fi
+elif [ $# -gt 2 ]
+ then
+	echo "Please enter only your Name and ID as a parameter."
+	echo 
+else
+	echo "Enter your Name and your ID."
+	echo 
+fi
